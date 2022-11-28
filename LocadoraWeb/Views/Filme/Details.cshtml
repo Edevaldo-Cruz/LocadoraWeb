@@ -1,0 +1,51 @@
+﻿@model LocadoraWeb.Model.Filme
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row align-items-center">
+    <div class="col-11">
+        <h1>Detalhes</h1>
+        <h4>Filme</h4>
+    </div>
+    <div class="col-1">
+        <a asp-action="Index">Voltar</a>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="FilmeId" />
+        <div class="row">
+            <div class="form-group col-4">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" readonly />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group col-4">
+                <label asp-for="ClassificacaoIndicada" class="control-label">Classificação indicada</label>
+                <input asp-for="ClassificacaoIndicada" class="form-control" readonly />
+                <span asp-validation-for="ClassificacaoIndicada" class="text-danger"></span>
+            </div>
+            <div class="form-group col-4">
+                <label asp-for="Lancamento" class="control-label">Lançamento</label>
+                <select class="form-select" name="lancamento" disabled>
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group float-end">
+            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model?.FilmeId">Editar</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<LocadoraWeb.Model.Locacao>
+
+@{
+    ViewData["Title"] = "Locações";
+    string devolvido, nomeCliente, nomeFilme;
+    int contador = 1;
+}
+
+<h1>Locações</h1>
+
+<p>
+    <a class="float-end btn btn-outline-primary" asp-action="Create">Nova Locação</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>nº</th>
+            <th>
+               Cliente
+            </th>
+            <th>
+                Filme
+            </th>
+            <th>
+                Data de locação
+            </th>
+            <th>
+                Data de entrega
+            </th>
+            <th>
+               Devolvido
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@contador</td>
+                <td>
+                     @if (@item.Cliente.Nome.Length >= 12)
+                    {
+                        nomeCliente = @item.Cliente.Nome.Substring(0, 12) + "...";
+                    }
+                    else
+                    {
+                        nomeCliente = @item.Cliente.Nome;
+                    }
+
+                    @nomeCliente
+                </td>
+                <td>                   
+                    @if (@item.Filme.Titulo.Length >= 25)
+                    {
+                        nomeFilme = @item.Filme.Titulo.Substring(0, 25) + "...";
+                    }
+                    else
+                    {
+                        nomeFilme = @item.Filme.Titulo;
+                    }
+
+                    @nomeFilme
+                </td>
+                <td>
+                    @item.DataLocacao.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.DataDevolucao.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @{
+                        if (@item.Devolvido == false)
+                        {
+                            devolvido = "não";
+                        }
+                        else
+                        {
+                            devolvido = "sim";
+                        }
+                    }
+                    @devolvido
+                </td>
+                <td>
+                    <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.LocacaoId">Editar</a>
+                    <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.LocacaoId">Detalhes</a>
+
+                    @if (@item.Devolvido == false){
+                        <a class="btn btn-outline-secondary" asp-action="DevolverFilme" asp-route-id="@item.LocacaoId">
+                            Devolução
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-outline-secondary disabled" asp-action="DevolverFilme" asp-route-id="@item.LocacaoId">
+                            Devolução
+                        </a>
+                    }
+                    
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.LocacaoId">Deletar</a>
+                </td>
+            </tr>
+            contador++;
+        }
+    </tbody>
+</table>

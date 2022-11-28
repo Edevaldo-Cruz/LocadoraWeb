@@ -1,0 +1,50 @@
+﻿@model LocadoraWeb.Model.Cliente
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row align-items-center">
+    <div class="col-lg-11 col-md-11 col-sm-11">
+        <h1>Adicionar Novo Cliente</h1>
+        <h4>Cliente</h4>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1">
+        <a asp-action="Index">Voltar</a>
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row" style="margin-bottom: 16px">
+                <div class="form-group col-4">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="CPF" class="control-label"></label>
+                    <input asp-for="CPF" class="form-control" />
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="DataNascimento" class="control-label">Data de nascimento</label>
+                    <input asp-for="DataNascimento" type="date" class="form-control" />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group float-end">
+                <input type="submit" value="Salvar" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

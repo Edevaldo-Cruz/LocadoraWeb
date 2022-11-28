@@ -1,0 +1,61 @@
+﻿@model IEnumerable<LocadoraWeb.Model.Filme>
+
+@{
+    ViewData["Title"] = "RetornaFilmeNuncaAlugados";
+    string lancamento, classificacao;
+    int contador = 1;
+}
+
+<h1>Filme nunca alugados</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>nº</th>
+            <th>
+                Titulo
+            </th>
+            <th>
+                Classificação indicada
+            </th>
+            <th>
+                Lançamento
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@contador</td>
+                <td>
+                    @item.Titulo
+                </td>
+                <td>
+                    @{
+                        if (item.ClassificacaoIndicada == 0)
+                        {
+                            classificacao = "Livre";
+                        }
+                        else
+                        {
+                            classificacao = item.ClassificacaoIndicada + " anos";
+                        }
+                    }
+                    @classificacao
+                </td>
+                <td>
+                    @if(@item.Lancamento == 0){
+                    lancamento = "não";
+                    }
+                    else{
+                    lancamento = "sim";
+                    }
+                    @lancamento
+                </td>
+            </tr>
+            contador++;
+        }
+    </tbody>
+</table>

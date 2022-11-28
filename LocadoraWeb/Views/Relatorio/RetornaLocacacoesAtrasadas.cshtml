@@ -1,0 +1,60 @@
+﻿@model IEnumerable<LocadoraWeb.Model.Locacao>
+
+@{
+    ViewData["Title"] = "Devolução em atraso";
+    int contador = 1;
+}
+
+<h1>Devolução em atraso</h1>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>nº</th>
+                <th>
+                    Cliente
+                </th>
+                <th>
+                   Filme
+                </th>
+                <th>
+                    Data locação
+                </th>
+                <th>
+                    Data Entrega
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@contador</td>
+                    <td>
+                       @item.Cliente.Nome
+                    </td>
+                    <td>
+                       @item.Filme.Titulo
+                    </td>
+                    <td>
+                        @item.DataLocacao.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.DataDevolucao.ToString("dd/MM/yyyy")
+                    </td>
+                </tr>
+                contador++;
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <span>
+        Sem registros
+    </span>
+}

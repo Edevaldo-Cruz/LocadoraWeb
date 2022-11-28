@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LocadoraWeb.Model.Cliente>
+
+@{
+    ViewData["Title"] = "Lista de Clientes";
+    int contador = 1;
+}
+
+<h1>Lista de Clientes</h1>
+<p class="float-end">
+    <a class="btn btn-outline-primary" asp-action="Create">Novo Cliente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>nº</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Data de nascimento</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@contador</td>
+                <td>@item.Nome</td>
+                <td>@item.CPF</td>
+                <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.ClienteId">Editar</a>
+                    <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.ClienteId">Detalhes</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.ClienteId">Deletar</a>
+                </td>
+            </tr>
+            contador++;
+        }
+    </tbody>
+</table>

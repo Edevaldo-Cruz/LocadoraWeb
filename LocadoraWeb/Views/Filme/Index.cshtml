@@ -1,0 +1,65 @@
+﻿@model IEnumerable<LocadoraWeb.Model.Filme>
+
+@{
+    ViewData["Title"] = "Index";
+    string lancamento, classificacao;
+    int contador = 1;
+}
+
+<h1>Lista de Filmes</h1>
+
+<p>
+    <a class="float-end btn btn-outline-primary" asp-action="Create">Novo Filme</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>nº</th>
+            <th>Titulo</th>
+            <th>Classificação indicada</th>
+            <th>Lançamento</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@contador</td>
+                <td>
+                    @item.Titulo
+                </td>
+                <td>                    
+                    @{
+                        if(item.ClassificacaoIndicada == 0){
+                            classificacao = "Livre";
+                        }
+                        else{
+                            classificacao = item.ClassificacaoIndicada + " anos";
+                        }
+                    }
+                     @classificacao
+                </td>
+                <td>                   
+                    @{
+                        if (@item.Lancamento == 0)
+                        {
+                            lancamento = "Não";
+                        }
+                        else
+                        {
+                            lancamento = "Sim";
+                        }
+                    }
+                    @lancamento
+                </td>
+                <td>
+                    <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.FilmeId">Editar</a> 
+                    <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.FilmeId">Dealhes</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.FilmeId">Deletar</a>
+                </td>
+            </tr>
+            contador++;
+        }
+    </tbody>
+</table>

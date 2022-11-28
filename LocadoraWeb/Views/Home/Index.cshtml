@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@
+
+<div class="row justify-content-between" style="margin-top: 64px">
+   
+        <div class="card col-3" style="width: 18rem;">
+            <img src="https://img.icons8.com/pastel-glyph/2x/name.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Clientes</h5>
+            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            <a asp-controller="Cliente" asp-action="Index" class="btn btn-outline-secondary">Acesse</a>
+            </div>
+        </div>   
+
+    <div class="card col-3" style="width: 18rem;">
+        <img src="https://img.icons8.com/pastel-glyph/2x/film-reel.png" class="card-img-top" alt="...">
+        
+        <div class="card-body">
+            <h5 class="card-title">Filmes</h5>
+            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            <a asp-controller="Filme" asp-action="Index" class="btn btn-outline-secondary">Acesse</a>
+        </div>
+    </div>
+    <div class="card col-3" style="width: 18rem;">
+        <img src="https://img.icons8.com/dotty/2x/bank-cards.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Locação</h5>
+            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            <a asp-controller="Locacao" asp-action="Index" class="btn btn-outline-secondary">Acesse</a>
+        </div>
+    </div>
+
+    <div class="card col-3" style="width: 18rem;">
+        <img src="https://img.icons8.com/dotty/2x/document.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Relatorios</h5>
+            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+    </div>
+</div>
